@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Out with Me?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5dc; /* Beige/Cream background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bear {
+            margin-bottom: 20px;
+        }
+
+            .bear img {
+                width: 150px;
+                height: auto;
+                border-radius: 10px;
+                animation: bounce 2s infinite;
+            }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically from the start */
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Smooth transition for size changes */
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+            .yes:hover {
+                background-color: #45a049;
+            }
+
+        .no {
+            background-color: #f44336;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+            .no:hover {
+                background-color: #e53935;
+            }
+
+        .celebration {
+            margin-top: 30px;
+            display: none;
+            font-size: 24px;
+            color: #333;
+        }
+
+            .celebration img {
+                width: 300px;
+                height: auto;
+                border-radius: 15px;
+                box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+            }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="bear" id="bear">
+            <img src="https://th.bing.com/th?id=OIP.ExL8CVswMowiZNHOgZpXxgAAAA&w=261&h=212&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="Cute Bear">
+        </div>
+        <h1 id="questionText">ell... i nak ajak you keluar boleh?</h1>
+        <div class="buttons" id="buttonContainer">
+            <button class="yes" id="yesButton" onclick="accept()">Yes</button>
+            <button class="no" id="noButton" onclick="handleNoClick()">No</button>
+        </div>
+        <div class="celebration" id="celebration">
+            <h2>hihi YEAAAYYYY 😄</h2>
+            <img src="https://i.pinimg.com/originals/ea/21/72/ea2172c709bc14301f322f5e17fc736f.gif" alt="Cute Bear Celebration">
+        </div>
+    </div>
+
+    <script>
+        let noButton = document.getElementById('noButton');
+        let yesButton = document.getElementById('yesButton');
+        let celebration = document.getElementById('celebration');
+        let bear = document.getElementById('bear');
+        let questionText = document.getElementById('questionText');
+        let buttonContainer = document.getElementById('buttonContainer');
+        let messages = ["jomlaaa?", "pleaseee?", "alaa jomla ell", "kejapp jee!", "pleasee ell?", "jomlaaa ell", "kasi la chance hmm", "kalau you tak suka kita balik awal" ];
+
+        // Function to handle the "Yes" click
+        function accept() {
+            bear.style.display = 'none';
+            questionText.style.display = 'none';
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            celebration.style.display = 'block';
+        }
+
+        function handleNoClick() {
+            let randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            noButton.textContent = randomMessage;
+
+            // Get current dimensions of the "Yes" button
+            let currentFontSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            let currentWidth = parseFloat(window.getComputedStyle(yesButton).width);
+            let currentHeight = parseFloat(window.getComputedStyle(yesButton).height);
+
+            // Increase size proportionally
+            yesButton.style.fontSize = currentFontSize + 20 + "px";
+            yesButton.style.width = currentWidth + 100 + "px";
+            yesButton.style.height = currentHeight + 50 + "px";
+        }
+
+    </script>
+</body>
+</html>
